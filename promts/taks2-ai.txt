@@ -1,0 +1,24 @@
+Fill CMakeLists.txt
+
+I'll read the existing
+m CMakeLists.txt
+so l can update it to a
+minimal, correct Make project that builds & main.cpp
+(C++17). Expected outcome: retrieve current contents to modify safely.
+v Read
+M CMakeLists.txt
+› Writing CMake content
+Why/what/outcome: I'll update
+M CMakeLists.txt with a
+minimal Make configuration that builds
+& main.cpp
+as a
+C++17 executable named hello; expected outcome is the file populated and ready for cmake / make or cmake --build.
+М СМakeLists.txt +30 -1
+Done - I updated M CMakeLists.txt configuration that builds
+& main.cpp
+hello.
+with a minimal CMake as an executable named
+What's next
+• I can run a local build (mkdir build && cmake .. && cmake --build.) and run the executable to verify output if you want.
+Would you like me to compile and run it now?
