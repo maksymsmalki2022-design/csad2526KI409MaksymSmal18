@@ -1,0 +1,63 @@
+create int add (int a, int b); in math_operations.h
+
+› Planning code updates
+I'll check the current c math_operations.h first, then add the declaration int add(int a, int b); and update the todo list.
+Expected outcome:
+c math_operations.h contains the new
+function declaration.
+Read c math_operations.h
+Added 1 todo
+C math_operations.h +12 -1
+Completed (7/7) Add declaration to math_operations.h
+Done - I added the declaration to c math_operations.h.
+Files changed
+c math_operations.h: added header guard and declaration:
+• int add (int a, int b);
+Next steps (I can do any of these)
+• Implement add in math_operations. cpp if you'd like.
+• Compile the project with Make and run hello to verify
+
+
+Create uni tests for this an fill this test in unit_test.cpp
+
+› Planning unit tests
+I'll update the todo list, read the existing & unit_tests.cpp, then add a small, self-contained unit test that checks add(1,2)==3 and a couple more cases. I will implement tests using a minimal assertion-based test harness so it builds without external test frameworks. Expected outcome:
+* unit_tests.cpp updated with tests that include c math_operations.h and return non-zero on failure.
+Added 1 todo
+Read
+c unit_tests.cpp
+› Executing build commands...
+Why/what/outcome: I'll write a small, self-contained test harness into
+* unit_tests.cpp, then compile and run it (compiling both c unit_tests.cpp and
+* math_operations.cpp ) to verify add
+works. Expected outcome: tests run and report pass/fail.
+
+
+
+I'm going to open tests/unit_tests.cpp to see the current tests and find the custom main so I can rewrite tests using GoogleTest (expected outcome: replace manual assertions and main with gtest-style TEST cases and include <gtest/gtest.h>). I'll read the file now.
+
+Read unit_tests.cpp
+
+I will replace the current custom test file with GoogleTest-based tests (include <gtest/gtest.h>, multiple TEST cases, no main). Expected outcome: unit_tests.cpp uses TEST/EXPECT_EQ and works with the existing CMake target that links GTest::gtest_main. Applying the patch now.
+
+unit_tests.cpp+24-29
+Added 1 todo
+
+Done — I converted the tests to GoogleTest.
+
+What changed
+
+unit_tests.cpp now:
+Includes <gtest/gtest.h> and math_operations.h.
+Contains five TEST cases using EXPECT_EQ.
+No longer defines a custom main() (so the linked GTest::gtest_main in CMakeLists.txt will provide main and integrate with CTest).
+Next steps (recommended)
+
+Build and run the tests locally to verify everything integrates:
+Or run the test binary directly:
+If you want, I can run the build and tests here and report the output. Tell me to proceed and I will run the commands and share results.
+If you want additional improvements, I can:
+
+Add more edge-case tests (overflow behavior, large negative values, parameterized tests).
+Add a CI workflow (GitHub Actions) that runs the CMake build and ctest.
+Make the tests more robust by using typed constants (int64_t) if you expect overflow.
