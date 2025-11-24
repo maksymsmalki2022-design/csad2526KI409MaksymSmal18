@@ -13,30 +13,22 @@ if not exist build (
     mkdir build
 )
 
-cd build || exit /b 1
+cd build
+if errorlevel 1 exit /b 1
 
 echo [ci.bat] Configuring project with CMake
 cmake .. -DCMAKE_BUILD_TYPE=Release
+if errorlevel 1 exit /b 1
 
 echo [ci.bat] Building project
 cmake --build . --config Release
+if errorlevel 1 exit /b 1
 
 echo [ci.bat] Running tests (ctest)
-where ctest >nul 2>&1
-if %ERRORLEVEL%==0 (
-    ctest --output-on-failure || (
-        echo [ci.bat] Some tests failed
-        exit /b 1
-    )
-) else (
-    if exist .\tests\unit_tests.exe (
-        .\tests\unit_tests.exe || (
-            echo [ci.bat] Tests failed (unit_tests.exe)
-            exit /b 1
-        )
-    ) else (
-        echo [ci.bat] No ctest and no tests\unit_tests.exe found; skipping tests
-    )
+ctest --output-on-failure
+if errorlevel 1 (
+    echo [ci.bat] Some tests failed
+    exit /b 1
 )
 
 echo [ci.bat] CI script finished successfully
